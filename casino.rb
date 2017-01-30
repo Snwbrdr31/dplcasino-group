@@ -19,6 +19,7 @@ class Casino
   end
 
   def menu
+    puts '*** CASINO MENU ***'
   end
 end
 
