@@ -5,6 +5,7 @@ require_relative 'player'
 require_relative 'games'
 
 
+
 class Casino
   # Todo: handle multiple players
   # Hint: Think array
@@ -15,14 +16,11 @@ class Casino
     @player = Player.new
     puts "What game do you want to play #{player.name}?"
     menu
-    # show a casino game menu
-    # let the player choose a game
-    # initialize the new game passing the player as a parameter
   end
 
   def menu
-    puts "*** CASINO MENU ***"
-    @games = Games.new
+    puts "*** CASINO MENU ***".colorize(:yellow)
+    @games = Games.new(self)
   end
 end
 # @games = Games.new

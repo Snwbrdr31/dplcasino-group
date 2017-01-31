@@ -1,9 +1,13 @@
+require 'colorize'
+require 'pry'
+
 class Dice
   attr_accessor :dice1, :dice2
   
 
- def initialize
-   puts "you're about to play dice"
+ def initialize(casino)
+   @casino = casino
+   puts "you're about to play dice!".colorize
    roll
  end
 
@@ -15,12 +19,24 @@ class Dice
   puts "dice rolling...."
   @dice1.sample 
   puts "#{@dice1.sample}"
-  if user_guess == @dice1.sample
-    puts "you win"
-    # add to wallet balance array 
-  else
-    puts "you lose"
-    # subtract from wallet balance
+    if user_guess == @dice1.sample
+      puts "you win"
+    else
+      puts "you lose"
+    end
+  exit_to_menu
   end
- end
+
+  def exit_to_menu
+    puts "Would you like to play Dice again?"
+    user_input = gets.chomp.downcase
+    if user_input == "yes"
+      roll
+    elsif user_input == "no"
+      @casino.menu
+    else 
+      puts "Invalid choice, try again"
+      exit_to_menu
+    end
+  end
 end
