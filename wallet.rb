@@ -2,32 +2,37 @@ class Wallet
   attr_accessor :amount
 
   def initialize
-    puts "Press 1 for random, press 2 for own amount"
-    user_input = gets.chomp.to_f
+    puts "How much money do you want to play with? Type 1 for a random amount, type 2 own amount."
+    user_input = gets.chomp.to_i
     case user_input
     when 1
-      @amount = Random.rand(500.00)
-      puts "Your total wallet amount is $#{Random.rand(500)}"
-      
+      @amount = Random.rand(500)
+      puts "Your total wallet amount is $#{@amount}".colorize(:green)  
     when 2
       wallet_begin
     else 
-      "invalid choice, please try again"
+      "Invalid choice, please try again"
       initialize
     end
   end
 
   def wallet_begin
     puts 'What amount are you playing with?'
-    @amount = gets.chomp.to_f 
-    puts "Your wallet amount is $#{@amount}"
+    @amount = gets.chomp.to_i 
+    puts "Your wallet amount is $#{@amount}".colorize(:green)
   end
-  def win_and_lose
-    #creat array for total amount, which you can add or subtract from balance.
+ 
+  def win(amt)
+    @amount += amt
   end
-  
-  
-    
+
+  def lose(amt)
+    @amount -= amt
+  end
+
+  def total
+    @amount
+  end 
 end
 
 

@@ -4,26 +4,22 @@ require 'artii'
 require_relative 'player'
 require_relative 'games'
 
-
-
 class Casino
-  # Todo: handle multiple players
-  # Hint: Think array
   attr_accessor :player
 
-  def initialize # .new always goes back to initialize
-    puts 'Welcome To The Casino'.colorize(:green)
+  def initialize 
+    a = Artii::Base.new 
+    puts a.asciify("Welcome to the Casino").colorize(:green)
     @player = Player.new
-    puts "What game do you want to play #{player.name}?"
+    puts "Get ready to play #{player.name}."
     menu
   end
 
   def menu
-    puts "*** CASINO MENU ***".colorize(:yellow)
-    @games = Games.new(self)
+    puts "\n\n*** CASINO MENU ***\n".colorize(:yellow)
+    @games = Games.new(self, @player)
   end
 end
-# @games = Games.new
 Casino.new
 
 
